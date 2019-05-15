@@ -1,4 +1,4 @@
-import { combineReducers } from "redux";
+//import { combineReducers } from "redux";
 
 import {
   VisibilityFilters,
@@ -33,14 +33,14 @@ function todos(state = [], action) {
         if (index === action.index) {
           console.log("#####", todo.completed);
           //https://medium.com/@oprearocks/what-do-the-three-dots-mean-in-javascript-bc5749439c9a
-          let a = Object.assign({}, todo, 
-            {completed: !todo.completed}
-          );
+          let a = Object.assign({}, todo, { completed: !todo.completed });
           console.log("aaaa", a.completed);
           return a;
         }
         return todo;
       });
+    default:
+      return state;
   }
 }
 
