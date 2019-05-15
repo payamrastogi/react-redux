@@ -1,16 +1,30 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import {createStore} from 'redux';
+import todoApp from './reducer';
+import {
+  addToDo,
+  toggleTodo,
+  setVisibilityFilter,
+  VisibilityFilters
+} from './action'
 
-import "./styles.css";
 
-function App() {
-  return (
-    <div className="App">
-      <h1>Hello CodeSandbox</h1>
-      <h2>Start editing to see some magic happen!</h2>
-    </div>
-  );
-}
+const store = createStore(todoApp);
 
-const rootElement = document.getElementById("root");
-ReactDOM.render(<App />, rootElement);
+// Log the initial state
+console.log(store.getState())
+
+// Every time the state changes, log it
+// Note that subscribe() returns a function for unregistering the listener
+const unsubscribe = store.subscribe(() => console.log(store.getState()))
+
+// Dispatch some actions
+store.dispatch(addToDo('Learn about actions'))
+store.dispatch(addToDo('Learn about reducers'))
+store.dispatch(addToDo('Learn about store'))
+store.dispatch(toggleTodo(0))
+store.dispatch(toggleTodo(1))
+store.dispatch(setVisibilityFilter(VisibilityFilters.SHOW_COMPLETED))
+
+// Stop listening to state updates
+unsubscribe()
+
