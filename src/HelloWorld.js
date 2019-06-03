@@ -8,4 +8,4 @@ const HelloWorld = ({tech}) =>{
   );
 };
 
-export deafult HelloWorld;
+export default HelloWorld;
