@@ -1,13 +1,11 @@
 import React from "react";
 import { Component } from "react";
 import HelloWorld from "./HelloWorld";
-import { createStore } from "redux";
-import reducer from "./reducers";
+import ButtonGroup from "./ButtonGroup";
+import {store} from "./store";
 
-const initialState = {
-  tech: "react"
-};
-const store = createStore(reducer, initialState);
+
+
 
 class App extends Component {
   //to use redux
@@ -19,7 +17,10 @@ class App extends Component {
   //};
   //------
   render() {
-    return <HelloWorld tech={store.getState().tech} />;
+    return [
+      <HelloWorld key={1} tech={store.getState().tech} />,
+      <ButtonGroup key={2} technologies={["react", "elm", "java"]}/>
+    ];
   }
 }
 
